@@ -57,8 +57,7 @@ def get_tasks(
 ):
     tasks = db.query(Task).filter(
         Task.child_id == child_id,
-        Task.guardian_id == current_guardian.id,
-        Task.is_active == True
+        Task.guardian_id == current_guardian.id
     ).all()
 
     return [
