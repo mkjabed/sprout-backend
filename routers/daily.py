@@ -84,22 +84,30 @@ def get_daily_tasks(
         .all()
     )
 
-    if not logs:
-        tasks = (
-            db.query(Task)
-            .filter(Task.child_id == child_id, Task.is_active.is_(True))
-            .all()
-        )
-        for task in tasks:
-            db.add(
-                DailyLog(
-                    child_id=child_id,
-                    task_id=task.id,
-                    log_date=today,
-                    completed=False,
-                    points_earned=0,
-                )
+    # Get all active tasks for this child
+    active_tasks = (
+        db.query(Task)
+        .filter(Task.child_id == child_id, Task.is_active.is_(True))
+        .all()
+    )
+
+    # Find tasks that don't have a log for today yet
+    existing_task_ids = {log.task_id for log in logs}
+    new_tasks = [t for t in active_tasks if t.id not in existing_task_ids]
+
+    # Create logs for any missing tasks
+    for task in new_tasks:
+        db.add(
+            DailyLog(
+                child_id=child_id,
+                task_id=task.id,
+                log_date=today,
+                completed=False,
+                points_earned=0,
             )
+        )
+
+    if new_tasks:
         db.commit()
         logs = (
             db.query(DailyLog)
