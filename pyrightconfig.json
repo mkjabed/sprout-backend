@@ -1,4 +1,5 @@
 {
   "reportAttributeAccessIssue": "none",
-  "reportArgumentType": "none"
+  "reportArgumentType": "none",
+  "reportGeneralTypeIssues": "none"
 }
