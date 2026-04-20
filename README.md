@@ -13,22 +13,22 @@ FastAPI backend for Sprout, a daily habit tracker for kids and guardians.
 
 ## Project Structure
 
-sprout-backend/
-├── routers/
-│ ├── init.py
-│ ├── children.py
-│ ├── daily.py
-│ ├── guardian.py
-│ ├── rewards.py
-│ └── tasks.py
-├── auth.py
-├── database.py
-├── dependencies.py
-├── main.py
-├── models.py
-├── scheduler.py
-├── requirements.txt
-└── .env
+    sprout-backend/
+    ├── routers/
+    │   ├── __init__.py
+    │   ├── children.py
+    │   ├── daily.py
+    │   ├── guardian.py
+    │   ├── rewards.py
+    │   └── tasks.py
+    ├── auth.py
+    ├── database.py
+    ├── dependencies.py
+    ├── main.py
+    ├── models.py
+    ├── scheduler.py
+    ├── requirements.txt
+    └── .env
 
 ## Local Setup
 
@@ -56,8 +56,11 @@ pip install -r requirements.txt
 **4. Create `.env` file**
 
 DATABASE_URL=postgresql://postgres:yourpassword@localhost:5432/sprout_db
+
 SECRET_KEY=your_secret_key
+
 ALGORITHM=HS256
+
 ACCESS_TOKEN_EXPIRE_MINUTES=10080
 
 **5. Run the server**
@@ -103,6 +106,9 @@ Auto-deploys on push to `main` branch.
 Set these in Railway dashboard:
 
 DATABASE_URL
+
 SECRET_KEY
+
 ALGORITHM
+
 ACCESS_TOKEN_EXPIRE_MINUTES
